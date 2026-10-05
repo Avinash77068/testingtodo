@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "title": "Learn React",
+    "done": false
+  },
+  {
+    "id": 2,
+    "title": "Learn Node.js",
+    "done": false
+  },
+  {
+    "id": 3,
+    "title": "Learn Docker",
+    "done": true
+  },
+  {
+    "id": 4,
+    "title": "Setup Jenkins",
+    "done": false
+  },
+  {
+    "id": 5,
+    "title": "Create CI/CD Pipeline",
+    "done": false
+  },
+  {
+    "id": 6,
+    "title": "Practice JavaScript",
+    "done": true
+  },
+  {
+    "id": 7,
+    "title": "Build Todo App",
+    "done": false
+  },
+  {
+    "id": 8,
+    "title": "Deploy Docker Container",
+    "done": false
+  },
+  {
+    "id": 9,
+    "title": "Test API",
+    "done": true
+  },
+  {
+    "id": 10,
+    "title": "Push Code to GitHub",
+    "done": false
+  }
+]
