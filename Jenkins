@@ -1,16 +1,17 @@
+
 pipeline {
     agent any
-
-    environment {
-        PATH = "/usr/local/bin:/opt/homebrew/bin:${env.PATH}"
-    }
 
     tools {
         nodejs 'NodeJS'
     }
 
-    stages {
+    options {
+        timestamps()
+        disableConcurrentBuilds()
+    }
 
+    stages {
         stage('Checkout') {
             steps {
                 git branch: 'main',
@@ -43,11 +44,23 @@ pipeline {
         stage('Docker Run') {
             steps {
                 sh '''
-                    docker rm -f todo-api || true
+                    docker rm -f todo-api-container 2>/dev/null || true
+
                     docker run -d \
-                        --name todo-api \
+                        --name todo-api-container \
+                        --restart unless-stopped \
                         -p 4000:4000 \
                         todo-api:latest
+                '''
+            }
+        }
+
+        stage('Verify Application') {
+            steps {
+                sh '''
+                    docker ps
+                    sleep 5
+                    curl -fsS http://localhost:4000/health
                 '''
             }
         }
@@ -59,7 +72,7 @@ pipeline {
         }
 
         failure {
-            echo 'Node.js + Docker pipeline failed!'
+            echo 'Node.js + Docker pipeline failed! Check Console Output.'
         }
     }
 }
